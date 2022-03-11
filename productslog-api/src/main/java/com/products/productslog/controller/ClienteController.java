@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.products.productslog.domain.model.Cliente;
 import com.products.productslog.domain.repository.ClienteRepository;
+import com.products.productslog.domain.service.CrudClienteService;
 
 import lombok.AllArgsConstructor;
 
@@ -29,6 +30,7 @@ public class ClienteController {
 
 	
 	private ClienteRepository clienteRepository;
+	private CrudClienteService clienteService;
 
 
 	@GetMapping
@@ -52,14 +54,14 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+		return clienteService.salvar(cliente);
 	}
 	
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> atualizar (@Valid @PathVariable Long clienteId, @RequestBody Cliente cliente){
 		if(clienteRepository.existsById(clienteId)) {
 			cliente.setId(clienteId);
-			cliente = clienteRepository.save(cliente);
+			cliente = clienteService.salvar(cliente);
 			
 			return ResponseEntity.ok(cliente);
 		}
@@ -71,7 +73,7 @@ public class ClienteController {
 		if(!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		clienteRepository.deleteById(clienteId);
+		clienteService.excluir(clienteId);
 		return ResponseEntity.noContent().build();
 	}
 }
