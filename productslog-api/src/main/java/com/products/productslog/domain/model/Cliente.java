@@ -15,11 +15,11 @@ public class Cliente {
 		private Long id;
 		
 		@Column(name = "nome")
-		private String name;
+		private String nome;
 		private String email;
 		
 		@Column(name = "fone")
-		private String phone;
+		private String telefone;
 		public Long getId() {
 			return id;
 		}
@@ -27,10 +27,10 @@ public class Cliente {
 			this.id = id;
 		}
 		public String getName() {
-			return name;
+			return nome;
 		}
 		public void setName(String name) {
-			this.name = name;
+			this.nome = name;
 		}
 		public String getEmail() {
 			return email;
@@ -39,10 +39,10 @@ public class Cliente {
 			this.email = email;
 		}
 		public String getPhone() {
-			return phone;
+			return telefone;
 		}
 		public void setPhone(String phone) {
-			this.phone = phone;
+			this.telefone = phone;
 		}
 		@Override
 		public int hashCode() {
