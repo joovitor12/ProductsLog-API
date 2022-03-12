@@ -14,6 +14,10 @@ import lombok.AllArgsConstructor;
 public class CrudClienteService {
 	private ClienteRepository clienteRepository;
 	
+	public Cliente buscar(Long clienteId) {
+		return clienteRepository.findById(clienteId).orElseThrow(() -> new DomainException("Cliente nao encontrado"));
+	}
+	
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
 		boolean emailEmUso = clienteRepository.findByEmail(cliente.getEmail()).stream().anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
