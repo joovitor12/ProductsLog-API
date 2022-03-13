@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.products.productslog.domain.exception.DomainException;
 @Entity
 
 public class Entrega {
@@ -125,6 +126,19 @@ public class Entrega {
 			
 			
 			
+		}
+		public void finalizar() {
+			//caso a entrega nao possa ser finalizada
+			if(!podeSerFinalizada()){
+				throw new DomainException("Entrega nao pode ser finalizada");
+			}
+			this.setStatus(StatusEntrega.FINALIZADA);
+			this.setDataFinalizacao(OffsetDateTime.now());
+			
+		}
+		
+		public boolean podeSerFinalizada() {
+			return StatusEntrega.PENDENTE.equals(this.getStatus());
 		}
 		
 		
