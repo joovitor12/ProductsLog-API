@@ -6,18 +6,20 @@ import java.time.OffsetDateTime;
 import com.products.productslog.domain.model.StatusEntrega;
 
 public class EntregaModel {
-		private Long id;
+		private ClienteResumoModel cliente;
 		private String nomeCliente;
 		private DestinatarioModel destinatario;
 		private BigDecimal taxa;
 		private StatusEntrega status;
 		private OffsetDateTime dataPedido;
 		private OffsetDateTime dataFinalizacao;
-		public Long getId() {
-			return id;
+		
+		
+		public ClienteResumoModel getCliente() {
+			return cliente;
 		}
-		public void setId(Long id) {
-			this.id = id;
+		public void setCliente(ClienteResumoModel cliente) {
+			this.cliente = cliente;
 		}
 		public String getNomeCliente() {
 			return nomeCliente;

@@ -27,14 +27,11 @@ public class Entrega {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
-		@Valid
-		@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
-		@NotNull
+		
 		@ManyToOne
 		private Cliente cliente;
 		
-		@Valid
-		@NotNull
+		
 		@Embedded
 		private Destinatario destinatario;
 		

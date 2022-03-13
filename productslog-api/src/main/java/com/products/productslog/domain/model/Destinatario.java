@@ -14,7 +14,7 @@ public class Destinatario {
 		private String logradouro;
 		@NotBlank
 		@Column(name = "destinatario_num")
-		private String num;
+		private String numero;
 		@NotBlank
 		@Column(name = "destinatario_complemento")
 		private String complemento;
@@ -34,11 +34,11 @@ public class Destinatario {
 		public void setLogradouro(String logradouro) {
 			this.logradouro = logradouro;
 		}
-		public String getNum() {
-			return num;
+		public String getNumero() {
+			return numero;
 		}
-		public void setNum(String num) {
-			this.num = num;
+		public void setNumero(String numero) {
+			this.numero = numero;
 		}
 		public String getComplemento() {
 			return complemento;

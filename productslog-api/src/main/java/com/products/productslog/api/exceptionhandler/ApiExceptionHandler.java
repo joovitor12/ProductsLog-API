@@ -1,6 +1,6 @@
 package com.products.productslog.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 			}
 			Problema problema = new Problema();
 			problema.setStatus(status.value());
-			problema.setDataHora(LocalDateTime.now());
+			problema.setDataHora(OffsetDateTime.now());
 			problema.setTitulo("Um ou mais campos estao invalidos. Tente novamente");
 			problema.setCampos(campos);
 			
@@ -48,7 +48,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 			HttpStatus status = HttpStatus.BAD_REQUEST;
 			Problema problema = new Problema();
 			problema.setStatus(status.value());
-			problema.setDataHora(LocalDateTime.now());
+			problema.setDataHora(OffsetDateTime.now());
 			problema.setTitulo(ex.getMessage());
 			
 			return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
