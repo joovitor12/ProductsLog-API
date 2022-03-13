@@ -33,6 +33,7 @@ public class Cliente {
 		@Size(max = 255)
 		private String email;
 		
+		
 		@NotBlank
 		@Size(max = 20)
 		@Column(name = "fone")
