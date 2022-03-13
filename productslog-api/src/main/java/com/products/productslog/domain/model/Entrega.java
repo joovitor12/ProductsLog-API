@@ -12,9 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+import com.products.productslog.domain.ValidationGroups;
 @Entity
 
 public class Entrega {
@@ -22,12 +27,18 @@ public class Entrega {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
+		@Valid
+		@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
+		@NotNull
 		@ManyToOne
 		private Cliente cliente;
 		
+		@Valid
+		@NotNull
 		@Embedded
 		private Destinatario destinatario;
 		
+		@NotNull
 		private BigDecimal taxa;
 		
 		@JsonProperty(access = Access.READ_ONLY)
@@ -62,12 +73,6 @@ public class Entrega {
 		public void setTaxa(BigDecimal taxa) {
 			this.taxa = taxa;
 		}
-		public StatusEntrega getSttsEntrega() {
-			return status;
-		}
-		public void setSttsEntrega(StatusEntrega sttsEntrega) {
-			this.status = sttsEntrega;
-		}
 		public LocalDateTime getDataPedido() {
 			return dataPedido;
 		}
@@ -83,6 +88,12 @@ public class Entrega {
 		@Override
 		public int hashCode() {
 			return Objects.hash(id);
+		}
+		public StatusEntrega getStatus() {
+			return status;
+		}
+		public void setStatus(StatusEntrega status) {
+			this.status = status;
 		}
 		@Override
 		public boolean equals(Object obj) {

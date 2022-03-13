@@ -26,8 +26,9 @@ public class SolicitacaoEntregaService {
 		//regras de negocio entrariam aqui
 		Cliente cliente = crudClienteService.buscar(entrega.getCliente().getId());
 		entrega.setCliente(cliente);
-		entrega.setSttsEntrega(StatusEntrega.PENDENTE);
+		entrega.setStatus(StatusEntrega.PENDENTE);
 		entrega.setDataPedido(LocalDateTime.now());
+		
 		return entregaRepository.save(entrega);
 	}
 }

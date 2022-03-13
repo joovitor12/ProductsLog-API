@@ -9,15 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
+import com.products.productslog.domain.ValidationGroups;
 
 @Entity
 public class Cliente {
+	
+		@NotNull(groups = ValidationGroups.ClienteId.class)
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
 		@NotBlank
+		@NotNull
 		@Size(max = 70)
 		private String nome;
 		
@@ -36,11 +43,11 @@ public class Cliente {
 		public void setId(Long id) {
 			this.id = id;
 		}
-		public String getName() {
+		public String getNome() {
 			return nome;
 		}
-		public void setName(String name) {
-			this.nome = name;
+		public void setNome(String nome) {
+			this.nome = nome;
 		}
 		public String getEmail() {
 			return email;
@@ -48,11 +55,11 @@ public class Cliente {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-		public String getPhone() {
+		public String getTelefone() {
 			return telefone;
 		}
-		public void setPhone(String phone) {
-			this.telefone = phone;
+		public void setTelefone(String telefone) {
+			this.telefone = telefone;
 		}
 		@Override
 		public int hashCode() {

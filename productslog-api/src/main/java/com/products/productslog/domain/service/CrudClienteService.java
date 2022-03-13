@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Service
 public class CrudClienteService {
 	private ClienteRepository clienteRepository;
-	
+
 	public Cliente buscar(Long clienteId) {
 		return clienteRepository.findById(clienteId).orElseThrow(() -> new DomainException("Cliente nao encontrado"));
 	}
